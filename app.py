@@ -53,7 +53,7 @@ def upload_image():
         file.save(os.path.join(app.config['UPLOAD_FOLDER'], filename))
         result = classify(os.path.join(app.config['UPLOAD_FOLDER'], filename))
         image_url = url_for('static', filename='upload/' + filename)
-        return render_template('main.html', pred=str('Class: {}, Confidence: {}'.format(CLASSES[result.argmax()], result)), image=image_url)
+        return render_template('main.html', pred=str('Class: {}, Confidence: {}'.format(CLASSES[result.argmax()], result.max())), image=image_url)
     else:
         return render_template('main.html', pred="Format not supported", image=None)
 
