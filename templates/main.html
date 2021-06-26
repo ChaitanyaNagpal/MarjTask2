@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Marj Classifier Task 2</title>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css" />
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.0/jquery.min.js"></script>
+</head>
+<body>
+<h1 align="center">Intel Image Classification</h1>
+<br>
+<br>
+<div class="container">
+    <div class="row" align="center">
+        {% if image %}
+        <div>
+            <img src="{{image}}" width="450px" height="450px" />
+        </div>
+        {% endif %}
+        <br>
+        <br>
+        <form method="post" action="/" enctype="multipart/form-data">
+            <dl>
+                <p>
+                    <input type="file" name="file" autocomplete="off" class="form-control" required>
+                </p>
+            </dl>
+            <p>
+                <input type="submit" value="Submit" class="btn btn-info">
+            </p>
+        </form>
+        <br>
+        <br>
+        {% if pred %}
+        <div>
+            <h2>
+                My prediction :-
+                <br>
+                {{pred}}
+            </h2>
+        </div>
+        {% endif %}
+        <br>
+        <br>
+        <div>
+            <p>Please find attached <a href="https://www.kaggle.com/spyd123/modelling-marj-tech">kaggle notebook</a> created for training the model.</p>
+        </div>
+    </div>
+</div>
+</body>
+</html>
