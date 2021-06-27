@@ -25,7 +25,7 @@ model = None
 def get_model():
     global model
     if model == None:
-        model = keras.models.load_model(os.path.join(BASE, 'model/weights_vgg16.h5'))
+        model = keras.models.load_model(os.path.join(BASE, 'model/model.h5'))
     return model
 
 def allowed_file(filename):
