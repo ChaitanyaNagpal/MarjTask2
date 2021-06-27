@@ -10,7 +10,8 @@ import os
 print(tf.__version__)
 
 ALLOWED_EXT = set(['png', 'jpg', 'jpeg'])
-UPLOAD_FOLDER = 'static/upload'
+BASE = os.path.abspath(os.path.dirname(__file__))
+UPLOAD_FOLDER = os.path.join(BASE, 'static/upload')
 CLASSES = np.array(['Buildings', 'Forest' ,'Glacier' ,'Mountain' ,'Sea' ,'Street'])
 
 app = Flask(__name__)
@@ -24,7 +25,7 @@ model = None
 def get_model():
     global model
     if model == None:
-        model = keras.models.load_model('model/weights_vgg16.h5')
+        model = keras.models.load_model(os.path.join(BASE, 'model/weights_vgg16.h5'))
     return model
 
 def allowed_file(filename):
