@@ -19,6 +19,13 @@ app.secret_key = "marj-app"
 app.config['UPLOAD_FOLDER'] = UPLOAD_FOLDER
 app.config['MAX_CONTENT_LENGTH'] = 16*1024*1024
 
+model = None
+
+def get_model():
+    global model
+    if model == None:
+        model = keras.models.load_model('model/weights_vgg16.h5')
+    return model
 
 def allowed_file(filename):
     if '.' in filename and filename.split('.')[-1].lower() in ALLOWED_EXT:
@@ -33,8 +40,8 @@ def load_image(img_path):
 
 def classify(img_path):
     imgs = load_image(img_path)
-    res_model = keras.models.load_model('model/model_1.h5')
-    result = res_model.predict(imgs)
+    model = get_model()
+    result = model.predict(imgs)
     return result
 
 @app.route('/')
