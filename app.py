@@ -51,6 +51,8 @@ def index():
 
 @app.route('/', methods=['POST'])
 def upload_image():
+    for file in os.listdir(UPLOAD_FOLDER):
+        os.remove(os.path.join(app.config['UPLOAD_FOLDER'], file))
     if 'file' not in request.files:
         return render_template('main.html', pred="No file part", image=None)
     file = request.files['file']
